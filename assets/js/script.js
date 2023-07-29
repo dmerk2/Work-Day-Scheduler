@@ -1,38 +1,38 @@
-let date = dayjs();
-
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
 $(document).ready(function () {
   // Displaying current day using dayjs
-  $("#currentDay").text(date.format("dddd, MMMM D"));
-});
+  $("#currentDay").text(dayjs().format("dddd, MMMM D"));
 
-$(function upDateCurrentHour() {
-  $(".description").each(function () {
-    let currentHour = date.hour();
-    let timeSlot = $(this).attr("id");
-    if (currentHour < timeSlot) {
-      $(this).addClass("past");
-    } else if (currentHour == timeSlot) {
-      $(this).removeClass("past");
-      $(this).addClass("present");
-    } else {
-      $(this).removeClass("past");
-      $(this).removeClass("present");
-      $(this).addClass("future");
-    }
+  $(function () {
+    $(".description").each(function () {
+      let currentHour = dayjs().format("hA");
+      let timeSlot = $(this).attr("id");
+      console.log(currentHour, timeSlot);
+      if (currentHour > timeSlot) {
+        $(this).addClass("past");
+      } else if (currentHour === timeSlot) {
+        // $(this).removeClass("past");
+        $(this).addClass("present");
+      } else {
+        // $(this).removeClass("past");
+        // $(this).removeClass("present");
+        $(this).addClass("future");
+      }
+    });
   });
-  setInterval(upDateCurrentHour, 1000);
+  // Save to local storage when save button is clicked
+  $(".saveBtn").on("click", function () {
+    let timeSlot = $(this).parent().attr("id");
+    let task = $(this).siblings(".description").val().trim();
+    localStorage.setItem(timeSlot, task);
+  });
+  // Get from local storage and add to the timeSlot
+  $(function () {
+    $(".time-block").each(function () {
+      let timeSlot = $(this).attr("id");
+      $(this).children(".description").val(localStorage.getItem(timeSlot));
+    });
+  });
 });
-
-$(".saveBtn").on("click", function () {
-  let time = $(this).parent().attr("id");
-  var task = $(this).siblings(".description").val();
-  localStorage.setItem(time, task);
-});
-
 
 // TODO: Add a listener for click events on the save button. This code should
 // use the id in the containing time-block as a key to save the user input in
