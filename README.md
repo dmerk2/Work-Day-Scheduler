@@ -1,4 +1,4 @@
-# Coding-Quiz
+# Work-Day-Scheduler
 
 ## Table of Contents
 
@@ -12,16 +12,21 @@
 ## Description
 
 ```md
-
+- Create a daily work scheduler
+- Current date displays on the top of the calendar
+- Display timeblocks from 9-5 color coded indicating whether it is the past, present, or future time
+- Saves user input to local storage
+- Retrieves local storage to apply value in according timeblock
+- Input still appears after refreshing page
 ```
 
 ## Deployed URL
 
-https://dmerk2.github.io/Word-Day-Scheduler/
+https://dmerk2.github.io/Work-Day-Scheduler/
 
 ## Usage
 
-![coding quiz](./assets/images/preview.gif)
+![work-day-scheduler](./assets/images/preview.gif)
 
 ## Credits
 
